@@ -21,7 +21,7 @@ namespace JustFood.Areas.Admin.Controllers {
             GetCategories();
             GetUsers();
 
-            ViewBag.QtyType = new SelectList(db.QuantityTypes.ToList(), "QuantityTypeID", "QtyType");
+            //ViewBag.QtyType = new SelectList(db.QuantityTypes.ToList(), "QuantityTypeID", "QtyType");
         }
 
         public ActionResult Add() {
@@ -29,30 +29,30 @@ namespace JustFood.Areas.Admin.Controllers {
             return View();
         }
 
-    
 
-        [HttpPost]
-        public ActionResult Add(AccountBalance accountbalance) {
-            if (User.Identity.IsAuthenticated) {
-                double? sum = db.ViewSummaryAccountBalances.Sum(n => n.Balance);
-                if (sum == null) {
-                    sum = 0;
-                }
-                var sum2 = (double) sum;
 
-                if (sum2 < accountbalance.Amount) {
-                    ModelState.AddModelError("Amount", "Sorry your amount exceeds your account balance " + sum2 + ".");
-                }
-                var inventoryExtension = new InventoryExtension();
-                if (ModelState.IsValid && inventoryExtension.InventoryAdd(db,accountbalance)) {
-                    db.SaveChanges();
-                    return RedirectToAction("List", "AccountBalance");
-                }
-            }
-            GetDropDowns();
+        //[HttpPost]
+        //public ActionResult Add(AccountBalance accountbalance) {
+        //    if (User.Identity.IsAuthenticated) {
+        //        double? sum = db.ViewSummaryAccountBalances.Sum(n => n.Balance);
+        //        if (sum == null) {
+        //            sum = 0;
+        //        }
+        //        var sum2 = (double)sum;
 
-            return View(accountbalance);
-        }
+        //        if (sum2 < accountbalance.Amount) {
+        //            ModelState.AddModelError("Amount", "Sorry your amount exceeds your account balance " + sum2 + ".");
+        //        }
+        //        var inventoryExtension = new InventoryExtension();
+        //        if (ModelState.IsValid && inventoryExtension.InventoryAdd(db, accountbalance)) {
+        //            db.SaveChanges();
+        //            return RedirectToAction("List", "AccountBalance");
+        //        }
+        //    }
+        //    GetDropDowns();
+
+        //    return View(accountbalance);
+        //}
 
 
         protected override void Dispose(bool disposing) {

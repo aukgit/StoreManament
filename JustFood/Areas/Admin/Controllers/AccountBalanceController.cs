@@ -18,71 +18,71 @@ namespace JustFood.Areas.Admin.Controllers {
 
         public ActionResult Index() { return View(); }
 
-        public ActionResult List() {
-            List<ViewAccountBalance> accountbalances = _Db.ViewAccountBalances.ToList();
-            DbSet<ViewSummaryAccountBalance> summary = _Db.ViewSummaryAccountBalances;
-            double? sum = summary.Sum(n => n.Balance);
-            ViewBag.Summary = summary;
-            ViewBag.Sum = sum;
-            var accounts = new AccountBalanceMultiple();
-            accounts.ViewAccountBalance = accountbalances;
-            return View(accounts);
-        }
+        //public ActionResult List() {
+        //    //List<ViewAccountBalance> accountbalances = _Db.ViewAccountBalances.ToList();
+        //    //DbSet<ViewSummaryAccountBalance> summary = _Db.ViewSummaryAccountBalances;
+        //    //double? sum = summary.Sum(n => n.Balance);
+        //    //ViewBag.Summary = summary;
+        //    //ViewBag.Sum = sum;
+        //    //var accounts = new AccountBalanceMultiple();
+        //    //accounts.ViewAccountBalance = accountbalances;
+        //    //return View(accounts);
+        //}
 
-        public ActionResult Search() { return View("~/Views/Shared/EditorTemplates/AccountBalanceSearch.cshtml"); }
+        //public ActionResult Search() { return View("~/Views/Shared/EditorTemplates/AccountBalanceSearch.cshtml"); }
 
-        [HttpPost]
-        public ActionResult Search(AccountBalanceSearch search) {
-            IEnumerable<ViewAccountBalance> accountbalances = _Db.ViewAccountBalances;
-            if (search.Year != null && search.Year > 2000) {
-                accountbalances = accountbalances.Where(n => n.Dated.Year == search.Year);
-            }
-            if (search.Month >= 1 && search.Month <= 12) {
-                accountbalances = accountbalances.Where(n => n.Dated.Month == search.Month);
-            }
+        //[HttpPost]
+        //public ActionResult Search(AccountBalanceSearch search) {
+        //    //IEnumerable<ViewAccountBalance> accountbalances = _Db.ViewAccountBalances;
+        //    //if (search.Year != null && search.Year > 2000) {
+        //    //    accountbalances = accountbalances.Where(n => n.Dated.Year == search.Year);
+        //    //}
+        //    //if (search.Month >= 1 && search.Month <= 12) {
+        //    //    accountbalances = accountbalances.Where(n => n.Dated.Month == search.Month);
+        //    //}
 
-            if (!string.IsNullOrWhiteSpace(search.ByUser)) {
-                search.ByUser = search.ByUser.ToLower();
-                accountbalances = accountbalances.Where(n => n.AccountOfLog.ToLower()
-                                                              .Contains(search.ByUser) || n.AccountOfName.ToLower()
-                                                                                           .Contains(search.ByUser));
-            }
-            DbSet<ViewSummaryAccountBalance> summary = _Db.ViewSummaryAccountBalances;
-            double? sum = summary.Sum(n => n.Balance);
-            ViewBag.Summary = summary;
-            ViewBag.Sum = sum;
-            var accounts = new AccountBalanceMultiple();
-            accounts.ViewAccountBalance = accountbalances.ToList();
-            return View("List", accounts);
-        }
+        //    //if (!string.IsNullOrWhiteSpace(search.ByUser)) {
+        //    //    search.ByUser = search.ByUser.ToLower();
+        //    //    accountbalances = accountbalances.Where(n => n.AccountOfLog.ToLower()
+        //    //                                                  .Contains(search.ByUser) || n.AccountOfName.ToLower()
+        //    //                                                                               .Contains(search.ByUser));
+        //    //}
+        //    //DbSet<ViewSummaryAccountBalance> summary = _Db.ViewSummaryAccountBalances;
+        //    //double? sum = summary.Sum(n => n.Balance);
+        //    //ViewBag.Summary = summary;
+        //    //ViewBag.Sum = sum;
+        //    //var accounts = new AccountBalanceMultiple();
+        //    //accounts.ViewAccountBalance = accountbalances.ToList();
+        //    //return View("List", accounts);
+        //}
 
-        public ActionResult CurrentMonth() {
-            IEnumerable<ViewAccountBalance> accountbalances = _Db.ViewAccountBalances;
-            accountbalances = accountbalances.Where(n => n.Dated.Year == DateTime.Now.Year && n.Dated.Month == DateTime.Now.Month);
+        //public ActionResult CurrentMonth() {
+        //    //IEnumerable<ViewAccountBalance> accountbalances = _Db.ViewAccountBalances;
+        //    //accountbalances = accountbalances.Where(n => n.Dated.Year == DateTime.Now.Year && n.Dated.Month == DateTime.Now.Month);
 
 
-            DbSet<ViewSummaryAccountBalance> summary = _Db.ViewSummaryAccountBalances;
-            double? sum = summary.Sum(n => n.Balance);
-            ViewBag.Summary = summary;
-            ViewBag.Sum = sum;
-            var accounts = new AccountBalanceMultiple();
-            accounts.ViewAccountBalance = accountbalances.ToList();
-            return View("List", accounts);
-        }
+        //    //DbSet<ViewSummaryAccountBalance> summary = _Db.ViewSummaryAccountBalances;
+        //    //double? sum = summary.Sum(n => n.Balance);
+        //    //ViewBag.Summary = summary;
+        //    //ViewBag.Sum = sum;
+        //    //var accounts = new AccountBalanceMultiple();
+        //    //accounts.ViewAccountBalance = accountbalances.ToList();
+        //    //return View("List", accounts);
+        //}
 
         public ActionResult FilterBy(int id) {
-            if (id > -1) {
-                User user = _Db.Users.Find(id);
-                if (user != null) {
-                    IQueryable<ViewAccountBalance> accountbalances = _Db.ViewAccountBalances.Where(n => n.AccountOf == id);
-                    ViewBag.Summary = null;
-                    ViewBag.Sum = null;
-                    ViewBag.Name = user.Name;
-                    var accounts = new AccountBalanceMultiple();
-                    accounts.ViewAccountBalance = accountbalances.ToList();
-                    return View("List", accounts);
-                }
-            }
+            //if (id > -1) {
+            //    User user = _Db.Users.Find(id);
+            //    if (user != null) {
+            //        IQueryable<ViewAccountBalance> accountbalances = _Db.ViewAccountBalances.Where(n => n.AccountOf == id);
+            //        ViewBag.Summary = null;
+            //        ViewBag.Sum = null;
+            //        ViewBag.Name = user.Name;
+            //        var accounts = new AccountBalanceMultiple();
+            //        accounts.ViewAccountBalance = accountbalances.ToList();
+            //        return View("List", accounts);
+            //    }
+            //}
             return View("Error");
         }
 

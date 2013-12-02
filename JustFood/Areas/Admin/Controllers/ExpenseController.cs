@@ -21,29 +21,29 @@ namespace JustFood.Areas.Admin.Controllers {
         }
 
         public void CreateExpense(AccountBalance accountbalance) {
-            accountbalance.Dated = DateTime.Now;
-            accountbalance.AddBy = _Userinfo.GetUserID();
-            accountbalance.IsAddedMoney = false;
-            accountbalance.IsExpense = true;
-            accountbalance.IsBoughtProduct = false;
+            //accountbalance.Dated = DateTime.Now;
+            //accountbalance.AddBy = _Userinfo.GetUserID();
+            //accountbalance.IsAddedMoney = false;
+            //accountbalance.IsExpense = true;
+            //accountbalance.IsBoughtProduct = false;
 
-            if (accountbalance.Amount < 0) {
-                ModelState.AddModelError("Amount", "Amount can't be negative.");
-            }
-            double? sum = db.ViewSummaryAccountBalances.Sum(n => n.Balance);
-            if (sum == null) {
-                sum = 0;
-            }
-            var sum2 = (double) sum;
-            if (sum2 < accountbalance.Amount) {
-                ModelState.AddModelError("Amount", "Sorry your amount excceds your account balance " + sum2 + ".");
-            }
-            accountbalance.Amount = accountbalance.Amount*-1;
+            //if (accountbalance.Amount < 0) {
+            //    ModelState.AddModelError("Amount", "Amount can't be negative.");
+            //}
+            //double? sum = db.ViewSummaryAccountBalances.Sum(n => n.Balance);
+            //if (sum == null) {
+            //    sum = 0;
+            //}
+            //var sum2 = (double) sum;
+            //if (sum2 < accountbalance.Amount) {
+            //    ModelState.AddModelError("Amount", "Sorry your amount excceds your account balance " + sum2 + ".");
+            //}
+            //accountbalance.Amount = accountbalance.Amount*-1;
 
-            if (ModelState.IsValid) {
-                db.AccountBalances.Add(accountbalance);
-                db.SaveChanges();
-            }
+            //if (ModelState.IsValid) {
+            //    db.AccountBalances.Add(accountbalance);
+            //    db.SaveChanges();
+            //}
         }
 
         [HttpPost]

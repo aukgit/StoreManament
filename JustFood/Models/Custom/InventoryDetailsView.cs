@@ -8,22 +8,22 @@ namespace JustFood.Models {
         private readonly JustFoodDBEntities db = new JustFoodDBEntities();
         public InventoryDetailsView(int CategoryID) { _categoryId = CategoryID; }
 
-        public IEnumerable<InventoryIn> InventoryStrock {
-            get {
-                return db.InventoryIns
-                         .Include(n => n.QuantityType)
-                         .Where(n => n.CategoryID == _categoryId)
-                         .ToList();
-            }
-        }
+        //public IEnumerable<InventoryIn> InventoryStrock {
+        //    get {
+        //        return db.InventoryIns
+        //                 .Include(n => n.QuantityType)
+        //                 .Where(n => n.CategoryID == _categoryId)
+        //                 .ToList();
+        //    }
+        //}
 
-        public IEnumerable<InventoryOut> InventoryDiscards {
-            get {
-                return db.InventoryOuts
-                         .Include(n=> n.QuantityType)
-                         .Where(n => n.CategoryID == _categoryId)
-                         .ToList();
-            }
-        }
+        //public IEnumerable<InventoryOut> InventoryDiscards {
+        //    get {
+        //        return db.InventoryOuts
+        //                 .Include(n=> n.QuantityType)
+        //                 .Where(n => n.CategoryID == _categoryId)
+        //                 .ToList();
+        //    }
+        //}
     }
 }

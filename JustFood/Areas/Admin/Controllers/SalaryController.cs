@@ -26,34 +26,34 @@ namespace JustFood.Areas.Admin.Controllers {
         //
         // POST: /Admin/Salary/Create
 
-        [HttpPost]
-        public ActionResult Pay(SalaryPaid salarypaid) {
-            var userinfo = new UserInfo();
-            User user = userinfo.GetUser(salarypaid.UserID);
-            if (user != null) {
-                salarypaid.PaidDate = DateTime.UtcNow;
-                salarypaid.Salary = user.Salary;
+        //[HttpPost]
+        //public ActionResult Pay(SalaryPaid salarypaid) {
+        //    var userinfo = new UserInfo();
+        //    User user = userinfo.GetUser(salarypaid.UserID);
+        //    if (user != null) {
+        //        salarypaid.PaidDate = DateTime.UtcNow;
+        //        salarypaid.Salary = user.Salary;
 
-                if (ModelState.IsValid) {
-                    db.SalaryPaids.Add(salarypaid);
-                    // add expense
-                    Category categorySalary = db.Categories.FirstOrDefault(n => n.Category1 == "Salary");
-                    if (categorySalary != null) {
-                        var expenseController = new ExpenseController();
-                        var accountBalance = new AccountBalance {AccountOf = salarypaid.UserID, Amount = salarypaid.Paid, CategoryProduct = categorySalary.CategoryID};
-                        expenseController.CreateExpense(accountBalance);
+        //        if (ModelState.IsValid) {
+        //            db.SalaryPaids.Add(salarypaid);
+        //            // add expense
+        //            Category categorySalary = db.Categories.FirstOrDefault(n => n.Category1 == "Salary");
+        //            if (categorySalary != null) {
+        //                var expenseController = new ExpenseController();
+        //                var accountBalance = new AccountBalance {AccountOf = salarypaid.UserID, Amount = salarypaid.Paid, CategoryProduct = categorySalary.CategoryID};
+        //                expenseController.CreateExpense(accountBalance);
 
-                        db.SaveChanges();
-                    } else {
-                        goto Error;
-                    }
-                    return RedirectToAction("Index");
-                }
-            }
-            Error:
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "LogName", salarypaid.UserID);
-            return View(salarypaid);
-        }
+        //                db.SaveChanges();
+        //            } else {
+        //                goto Error;
+        //            }
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+        //    Error:
+        //    ViewBag.UserID = new SelectList(db.Users, "UserID", "LogName", salarypaid.UserID);
+        //    return View(salarypaid);
+        //}
 
         protected override void Dispose(bool disposing) {
             db.Dispose();

@@ -32,11 +32,7 @@ namespace JustFood.Models {
 
 
         public virtual ICollection<AccountBalance> AccountBalances { get; set; }
-
         public virtual ICollection<CategoryWiseSold> CategoryWiseSolds { get; set; }
-
-
-        public virtual ICollection<Inventory> Inventories { get; set; }
         public virtual ICollection<Inventory> Inventories { get; set; }
 
 

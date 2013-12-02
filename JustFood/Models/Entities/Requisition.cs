@@ -7,12 +7,7 @@ namespace JustFood.Models {
         [DisplayName("Quantity")]
         public int Quantity { get; set; }
 
-        /// <summary>
-        /// Quantity Type Value
-        /// </summary>
-        [DisplayName("Quantity Type")]
-        public byte QtyType { get; set; }
-
+       
 
         public bool IsAutoAdded { get; set; }
         [DisplayName("Is In Process")]
@@ -30,10 +25,7 @@ namespace JustFood.Models {
         [DisplayName("Added By")]
         public int AddedBy { get; set; }
 
-        /// <summary>
-        /// List of Quantity types
-        /// </summary>
-        public virtual QuantityType QuantityType { get; set; }
+
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
     }

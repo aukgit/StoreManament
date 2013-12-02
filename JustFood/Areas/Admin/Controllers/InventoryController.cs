@@ -17,29 +17,29 @@ namespace JustFood.Areas.Admin.Controllers {
         // GET: /Admin/Inventory/
 
         public ActionResult Index() {
-            List<Inventory> inventories = db.Inventories.Include(i => i.Category).Include(n=> n.QuantityType)
-                                            .ToList();
-            IQueryable<Category> categories = db.Categories.Where(n => !n.IsExpense);
-            var qty = db.QuantityTypes.FirstOrDefault();
-            if (qty == null) {
-                return View("Error2", 
-                    new Exception("No quantity type exist."));
-            }
-            foreach (Category category in categories) {
-                if (!inventories.Any(n => n.CategoryID == category.CategoryID)) {
-                    var inventory = new Inventory {
-                        CategoryID = category.CategoryID,
-                        Quantity = 0, 
-                        LastEditedby = userinfo.GetUserID(),
-                        QtyType = qty.QuantityTypeID
-                    };
-                    db.Inventories.Add(inventory);
-                    inventories.Add(inventory);
-                }
-            }
+            //List<Inventory> inventories = db.Inventories.Include(i => i.Category).Include(n=> n.QuantityType)
+            //                                .ToList();
+            //IQueryable<Category> categories = db.Categories.Where(n => !n.IsExpense);
+            //var qty = db.QuantityTypes.FirstOrDefault();
+            //if (qty == null) {
+            //    return View("Error2", 
+            //        new Exception("No quantity type exist."));
+            //}
+            //foreach (Category category in categories) {
+            //    if (!inventories.Any(n => n.CategoryID == category.CategoryID)) {
+            //        var inventory = new Inventory {
+            //            CategoryID = category.CategoryID,
+            //            Quantity = 0, 
+            //            LastEditedby = userinfo.GetUserID(),
+            //            QtyType = qty.QuantityTypeID
+            //        };
+            //        db.Inventories.Add(inventory);
+            //        inventories.Add(inventory);
+            //    }
+            //}
 
-            db.SaveChanges();
-            return View(inventories);
+            //db.SaveChanges();
+            return View();
         }
 
         public ActionResult Details(int id) {
@@ -55,7 +55,7 @@ namespace JustFood.Areas.Admin.Controllers {
         [HttpPost]
         public ActionResult Edit(Inventory inventory) {
             var inventory2 = db.Inventories.Find(inventory.InventoryID);
-            inventory2.SoldPrice = inventory.SoldPrice;
+            //inventory2.SoldPrice = inventory.SoldPrice;
             //removing session information.
             Statics.Cookies.Remove(CookiesNames.InventoryEmpty);
             db.SaveChanges();

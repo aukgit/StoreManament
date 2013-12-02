@@ -8,17 +8,17 @@ namespace JustFood.Areas.Admin.Controllers {
         private readonly JustFoodDBEntities db = new JustFoodDBEntities();
 
         void GetDropDowns(Category category = null) {
-            if (category != null) {
-                ViewBag.QtyType = new SelectList(db.QuantityTypes.ToList(), "QuantityTypeID", "QtyType",category.QtyType);
+            //if (category != null) {
+            //    ViewBag.QtyType = new SelectList(db.QuantityTypes.ToList(), "QuantityTypeID", "QtyType",category.QtyType);
                 
-            } else {
-                ViewBag.QtyType = new SelectList(db.QuantityTypes.ToList(), "QuantityTypeID", "QtyType");
-            }
+            //} else {
+            //    ViewBag.QtyType = new SelectList(db.QuantityTypes.ToList(), "QuantityTypeID", "QtyType");
+            //}
         }
 
-        public ActionResult Index() {
-            return View(db.Categories.Include(n => n.QuantityType).ToList());
-        }
+        //public ActionResult Index() {
+        //    //return View(db.Categories.Include(n => n.QuantityType).ToList());
+        //}
 
         public ActionResult Create() {
             GetDropDowns();
