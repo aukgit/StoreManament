@@ -15,12 +15,11 @@ namespace JustFood.Models {
         public decimal SellingPrice { get; set; }
         public decimal BuyingPrice { get; set; }
 
-        public virtual Category Category { get; set; }
-        public virtual User User { get; set; }
-
 
         public virtual ICollection<AccountBalance> AccountBalances { get; set; }
+        public virtual Category Category { get; set; }
         public virtual ICollection<DetailedSale> DetailedSales { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<InventoryIn> InventoryIns { get; set; }
     }
 }

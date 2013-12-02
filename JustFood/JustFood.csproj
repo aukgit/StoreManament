@@ -181,12 +181,15 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Areas\Admin\Controllers\InventoryConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\InventoryController.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Areas\Admin\Controllers\QtyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QtyConverterController.cs" />
     <Compile Include="Areas\Admin\Controllers\SalaryController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Sale\Controllers\HomeController.cs" />
@@ -199,17 +202,21 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\TestingController.cs" />
+    <Compile Include="Models\Custom\InventoryOutConfigViewDisplay.cs" />
     <Compile Include="Models\Entities\ClientDetail.cs" />
     <Compile Include="Models\Entities\Invoice.cs" />
     <Compile Include="Models\Entities\NotificationSpecific.cs" />
     <Compile Include="Modules\AppConfig.cs" />
     <Compile Include="Modules\Extensions\InventoryExtension.cs" />
+    <Compile Include="Modules\Extensions\InventoryOutConfigExtension.cs" />
+    <Compile Include="Modules\Extensions\QuantityTypeExtension.cs" />
     <Compile Include="Modules\Extensions\UserAccountsExtension.cs" />
     <Compile Include="Models\Entities\Config.cs" />
     <Compile Include="Modules\Extensions\ZoneExtenstion.cs" />
     <Compile Include="Modules\Mail\Sender.cs" />
     <Compile Include="Modules\Message\Const.cs" />
     <Compile Include="Modules\Message\MessageSetter.cs" />
+    <Compile Include="Modules\Extensions\ProductExtension.cs" />
     <Compile Include="Models\Entities\CategoryWiseSold.cs" />
     <Compile Include="Modules\Filters\AreaAuthorizationFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,6 +226,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Context\JustFoodEntities.cs" />
+    <Compile Include="Models\Custom\AccountBalanceMultiple.cs" />
+    <Compile Include="Models\Custom\AccountBalanceSearch.cs" />
+    <Compile Include="Models\Custom\AddProductView.cs" />
+    <Compile Include="Models\Custom\DiscountView.cs" />
+    <Compile Include="Models\Custom\ExpenseSalesView.cs" />
+    <Compile Include="Models\Custom\InventoryDetailsView.cs" />
+    <Compile Include="Models\Custom\SaleDayView.cs" />
     <Compile Include="Models\Entities\AccountBalance.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Code.cs" />
@@ -406,7 +420,6 @@
     <Folder Include="App_Data\DatabaseTables\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Sale\Models\" />
-    <Folder Include="Models\Custom\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
