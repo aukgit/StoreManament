@@ -18,20 +18,18 @@ namespace JustFood.Models
         public System.DateTime Dated { get; set; }
         public double Amount { get; set; }
         public bool IsBoughtProduct { get; set; }
-        public Nullable<int> CategoryProduct { get; set; }
-        public Nullable<decimal> AddedQuantity { get; set; }
+        public Nullable<int> AddedQuantity { get; set; }
         public bool IsExpense { get; set; }
         public bool IsAddedMoney { get; set; }
         public Nullable<int> AccountOf { get; set; }
         public int AddBy { get; set; }
         public string Note { get; set; }
         public bool IsVerified { get; set; }
-        public Nullable<byte> QtyType { get; set; }
         public bool IsDailyExpense { get; set; }
         public bool IsRevenueOfDailySales { get; set; }
+        public long InventoryID { get; set; }
     
-        public virtual Category Category { get; set; }
-        public virtual QuantityType QuantityType { get; set; }
+        public virtual Inventory Inventory { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
     }

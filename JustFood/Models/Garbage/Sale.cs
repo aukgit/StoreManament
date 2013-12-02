@@ -17,8 +17,7 @@ namespace JustFood.Models
         public Sale()
         {
             this.CategoryWiseSolds = new HashSet<CategoryWiseSold>();
-            this.DailyStocks = new HashSet<DailyStock>();
-            this.DetailedSales = new HashSet<DetailedSale>();
+            this.Invoices = new HashSet<Invoice>();
         }
     
         public int SaleID { get; set; }
@@ -29,19 +28,16 @@ namespace JustFood.Models
         public decimal TotalAcheived { get; set; }
         public decimal OtherExpenses { get; set; }
         public bool IsDividedAmongPartners { get; set; }
-        public int TotalWastages { get; set; }
         public int TotalDiscountNumber { get; set; }
         public string Noted { get; set; }
         public bool AnyProblem { get; set; }
         public int DiscardSales { get; set; }
         public bool IsDiscardsChecked { get; set; }
         public double InHandCashChange { get; set; }
-        public bool IsInventorySet { get; set; }
         public decimal ActualAcheivedFromEmployee { get; set; }
         public decimal ActualLossProfitAfterCollection { get; set; }
     
         public virtual ICollection<CategoryWiseSold> CategoryWiseSolds { get; set; }
-        public virtual ICollection<DailyStock> DailyStocks { get; set; }
-        public virtual ICollection<DetailedSale> DetailedSales { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

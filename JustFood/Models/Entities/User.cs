@@ -8,9 +8,10 @@ namespace JustFood.Models {
         public User() {
             this.AccountBalances = new HashSet<AccountBalance>();
             this.AccountBalances1 = new HashSet<AccountBalance>();
-            this.DetailedSales = new HashSet<DetailedSale>();
+            this.Configs = new HashSet<Config>();
             this.Inventories = new HashSet<Inventory>();
             this.InventoryIns = new HashSet<InventoryIn>();
+            this.Invoices = new HashSet<Invoice>();
             this.Notifications = new HashSet<Notification>();
             this.NotificationSeens = new HashSet<NotificationSeen>();
             this.Requisitions = new HashSet<Requisition>();
@@ -67,6 +68,10 @@ namespace JustFood.Models {
         public virtual ICollection<Notification> Notifications { get; set; }
         public virtual ICollection<NotificationSeen> NotificationSeens { get; set; }
         public virtual TimeZone TimeZone { get; set; }
+
+        public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual ICollection<Config> Configs { get; set; }
+
 
     }
 }

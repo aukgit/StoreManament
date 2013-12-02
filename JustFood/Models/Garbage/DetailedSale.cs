@@ -15,22 +15,12 @@ namespace JustFood.Models
     public partial class DetailedSale
     {
         public long DetailedSaleID { get; set; }
-        public int SaleID { get; set; }
-        public int CategoryID { get; set; }
-        public int SellingPrice { get; set; }
-        public Nullable<int> Discount { get; set; }
-        public string Note { get; set; }
-        public int SoldAt { get; set; }
-        public System.DateTime Time { get; set; }
-        public int UserID { get; set; }
-        public bool IsDiscard { get; set; }
-        public bool IsMarkedDiscard { get; set; }
-        public string DiscountPerson { get; set; }
-        public string DiscountNumber { get; set; }
-        public short Qty { get; set; }
+        public short Quantity { get; set; }
+        public long InventoryID { get; set; }
+        public decimal SellingPrice { get; set; }
+        public long InvoiceID { get; set; }
     
-        public virtual Category Category { get; set; }
-        public virtual Sale Sale { get; set; }
-        public virtual User User { get; set; }
+        public virtual Inventory Inventory { get; set; }
+        public virtual Invoice Invoice { get; set; }
     }
 }

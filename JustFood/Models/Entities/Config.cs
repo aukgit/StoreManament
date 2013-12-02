@@ -25,10 +25,16 @@ namespace JustFood.Models
         public string CompanyEmail { get; set; }
         public string CompanyContacts { get; set; }
         public short DefaultTimeZoneID { get; set; }
+        /// <summary>
+        /// Default company expense and add account.
+        /// </summary>
+        public int DefaultCompanyUserAccountID { get; set; }
 
         public string ApplicationName { get; set; }
         public string ApplicationSubtitle { get; set; }
     
         public virtual TimeZone TimeZone { get; set; }
+        public virtual User User { get; set; }
+
     }
 }

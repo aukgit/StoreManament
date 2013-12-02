@@ -27,7 +27,9 @@ namespace JustFood.Models
         public short DefaultTimeZoneID { get; set; }
         public string ApplicationName { get; set; }
         public string ApplicationSubtitle { get; set; }
+        public int DefaultCompanyUserAccountID { get; set; }
     
         public virtual TimeZone TimeZone { get; set; }
+        public virtual User User { get; set; }
     }
 }

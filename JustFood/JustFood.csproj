@@ -203,6 +203,8 @@
     </Compile>
     <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Models\Custom\InventoryOutConfigViewDisplay.cs" />
+    <Compile Include="Models\Entities\ClientDetail.cs" />
+    <Compile Include="Models\Entities\Invoice.cs" />
     <Compile Include="Models\Entities\NotificationSpecific.cs" />
     <Compile Include="Modules\AppConfig.cs" />
     <Compile Include="Modules\Extensions\InventoryExtension.cs" />
@@ -234,29 +236,17 @@
     <Compile Include="Models\Entities\AccountBalance.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Code.cs" />
-    <Compile Include="Models\Entities\DailyStock.cs" />
     <Compile Include="Models\Entities\DetailedSale.cs" />
     <Compile Include="Models\Entities\Inventory.cs" />
     <Compile Include="Models\Entities\InventoryIn.cs" />
-    <Compile Include="Models\Entities\InventoryOut.cs" />
-    <Compile Include="Models\Entities\InventoryOutConfig.cs" />
     <Compile Include="Models\Entities\Notification.cs" />
     <Compile Include="Models\Entities\NotificationSeen.cs" />
-    <Compile Include="Models\Entities\QuantityConversation.cs" />
-    <Compile Include="Models\Entities\QuantityType.cs" />
     <Compile Include="Models\Entities\Requisition.cs" />
     <Compile Include="Models\Entities\SalaryPaid.cs" />
     <Compile Include="Models\Entities\Sale.cs" />
     <Compile Include="Models\Entities\TimeZone.cs" />
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\Entities\UserRole.cs" />
-    <Compile Include="Models\Entities\ViewAccountBalance.cs" />
-    <Compile Include="Models\Entities\ViewInventoryIn.cs" />
-    <Compile Include="Models\Entities\ViewInventoryInOutSummary.cs" />
-    <Compile Include="Models\Entities\ViewInventoryOut.cs" />
-    <Compile Include="Models\Entities\ViewInventorySalable.cs" />
-    <Compile Include="Models\Entities\ViewSummaryAccountBalance.cs" />
-    <Compile Include="Models\Entities\ViewSummarySale.cs" />
     <Compile Include="Models\JustFoodModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

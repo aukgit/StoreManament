@@ -9,45 +9,28 @@ namespace JustFood.Models
     public partial class DetailedSale
     {
         public long DetailedSaleID { get; set; }
-        public int SaleID { get; set; }
-        public int CategoryID { get; set; }
-        public int SellingPrice { get; set; }
-        public Nullable<int> Discount { get; set; }
-        public string Note { get; set; }
-        public int SoldAt { get; set; }
-        public System.DateTime Time { get; set; }
 
-        public int UserID { get; set; }
+        public long InventoryID { get; set; }
+        public decimal SellingPrice { get; set; }
         /// <summary>
-        /// True when add a record of Discard
+        /// Linked with which invoice.
         /// </summary>
-        [DefaultValue(false)]
-        public bool IsDiscard { get; set; }
-        /// <summary>
-        /// True when last sold object is marked as discarded.
-        /// </summary>
-        [DefaultValue(false)]
-        public bool IsMarkedDiscard { get; set; }
-
-        [MaxLength(20)]
-        public string DiscountPerson { get; set; }
-
-        [MaxLength(30)]
-        public string DiscountNumber { get; set; }
-
-        public virtual Category Category { get; set; }
-        public virtual Sale Sale { get; set; }
+        public long InvoiceID { get; set; }
+    
         
         /// <summary>
-        /// How many quantities sold. If it is discarded then -1 or whatever the previous number is.
+        /// How many quantities sold.
         /// </summary>
-        public short Qty { get; set; }
-
+        public short Quantity { get; set; }
 
         /// <summary>
-        /// user who processed it.
+        /// which product linked to.
         /// </summary>
-        public virtual User User { get; set; }
+        public virtual Inventory Inventory { get; set; }
+        /// <summary>
+        /// details of that linked invoice.
+        /// </summary>
+        public virtual Invoice Invoice { get; set; }
 
     }
 }

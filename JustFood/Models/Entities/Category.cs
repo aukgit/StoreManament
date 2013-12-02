@@ -5,14 +5,8 @@ using System;
 namespace JustFood.Models {
     public partial class  Category {
         public Category() {
-            this.AccountBalances = new HashSet<AccountBalance>();
             this.CategoryWiseSolds = new HashSet<CategoryWiseSold>();
-            this.DetailedSales = new HashSet<DetailedSale>();
             this.Inventories = new HashSet<Inventory>();
-            this.InventoryIns = new HashSet<InventoryIn>();
-            this.InventoryOuts = new HashSet<InventoryOut>();
-            this.InventoryOutConfigs = new HashSet<InventoryOutConfig>();
-            this.InventoryOutConfigs1 = new HashSet<InventoryOutConfig>();
         }
 
         public int CategoryID { get; set; }
@@ -42,12 +36,9 @@ namespace JustFood.Models {
         public virtual ICollection<CategoryWiseSold> CategoryWiseSolds { get; set; }
 
 
-        public virtual ICollection<DetailedSale> DetailedSales { get; set; }
-        public virtual QuantityType QuantityType { get; set; }
         public virtual ICollection<Inventory> Inventories { get; set; }
-        public virtual ICollection<InventoryIn> InventoryIns { get; set; }
-        public virtual ICollection<InventoryOut> InventoryOuts { get; set; }
-        public virtual ICollection<InventoryOutConfig> InventoryOutConfigs { get; set; }
-        public virtual ICollection<InventoryOutConfig> InventoryOutConfigs1 { get; set; }
+        public virtual ICollection<Inventory> Inventories { get; set; }
+
+
     }
 }

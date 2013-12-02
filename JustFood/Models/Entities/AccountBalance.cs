@@ -10,13 +10,13 @@ namespace JustFood.Models {
         public double Amount { get; set; }
         [DisplayName("Is Bought")]
         public bool IsBoughtProduct { get; set; }
-        /// <summary>
-        /// Category ID
-        /// </summary>
-        [DisplayName("Category")]
-        public int? CategoryProduct { get; set; }
+  
+        [DisplayName("Inventory ID")]
+        public long InventoryID { get; set; }
+
         [DisplayName("Quantity")]
-        public decimal? AddedQuantity { get; set; }
+        public int? AddedQuantity { get; set; }
+
         [DisplayName("Quantity Type")]
         public Nullable<byte> QtyType { get; set; }
         [DisplayName("Is Expense")]
@@ -47,11 +47,6 @@ namespace JustFood.Models {
         ///     Added by whom.
         /// </summary>
         public virtual User User1 { get; set; }
-
-        /// <summary>
-        /// Quantity Type
-        /// </summary>
-        public virtual QuantityType QuantityType { get; set; }
 
     }
 }
