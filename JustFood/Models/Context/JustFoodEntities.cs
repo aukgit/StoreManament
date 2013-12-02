@@ -34,7 +34,7 @@ namespace JustFood.Models
         public DbSet<AccountBalance> AccountBalances { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Code> Codes { get; set; }
-        public DbSet<DailyStock> DailyStocks { get; set; }
+        public DbSet<ClientDetail> ClientDetails { get; set; }
         public DbSet<DetailedSale> DetailedSales { get; set; }
 
         public DbSet<Notification> Notifications { get; set; }
@@ -44,8 +44,8 @@ namespace JustFood.Models
 
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<InventoryIn> InventoryIns { get; set; }
-        public DbSet<InventoryOut> InventoryOuts { get; set; }
-        public DbSet<InventoryOutConfig> InventoryOutConfigs { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+
         public DbSet<Sale> Sales { get; set; }
 
         public DbSet<TimeZone> TimeZones { get; set; }
@@ -56,20 +56,11 @@ namespace JustFood.Models
         public DbSet<UserRole> UserRoles { get; set; }
 
 
-        public DbSet<ViewAccountBalance> ViewAccountBalances { get; set; }
-        public DbSet<ViewSummaryAccountBalance> ViewSummaryAccountBalances { get; set; }
-        public DbSet<ViewInventoryIn> ViewInventoryIns { get; set; }
-        public DbSet<ViewInventoryInOutSummary> ViewInventoryInOutSummaries { get; set; }
-        public DbSet<ViewInventoryOut> ViewInventoryOuts { get; set; }
-        public DbSet<ViewInventorySalable> ViewInventorySalables { get; set; }
-        public DbSet<ViewSummarySale> ViewSummarySales { get; set; }
-
-        public DbSet<QuantityType> QuantityTypes { get; set; }
+     
 
 
         public DbSet<Config> Configs { get; set; }
 
-        public DbSet<QuantityConversation> QuantityConversations { get; set; }
 
     }
 }

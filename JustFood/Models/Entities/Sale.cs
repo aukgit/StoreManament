@@ -6,7 +6,6 @@ namespace JustFood.Models {
     public class Sale {
         public Sale() {
             CategoryWiseSolds = new HashSet<CategoryWiseSold>();
-            DailyStocks = new HashSet<DailyStock>();
             DetailedSales = new HashSet<DetailedSale>();
         }
 
@@ -26,7 +25,6 @@ namespace JustFood.Models {
         [DisplayName("Expenses")]
         public decimal OtherExpenses { get; set; }
         public bool IsDividedAmongPartners { get; set; }
-        public int TotalWastages { get; set; }
         public int TotalDiscountNumber { get; set; }
         public string Noted { get; set; }
         [DisplayName("Problem")]
@@ -54,7 +52,6 @@ namespace JustFood.Models {
         /// This one is for the optimization of the query pressure in ViewSummarySale
         /// </summary>
         public virtual ICollection<CategoryWiseSold> CategoryWiseSolds { get; set; }
-        public virtual ICollection<DailyStock> DailyStocks { get; set; }
         public virtual ICollection<DetailedSale> DetailedSales { get; set; }
     }
 }
