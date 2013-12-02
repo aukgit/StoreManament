@@ -1,0 +1,130 @@
+﻿@using System.Collections
+@using System.Web.Mvc.Html
+@using JustFood.Models;
+@using JustFood.Modules.Extensions;
+@using Microsoft.Web.Mvc.Html
+@model IList<JustFood.Models.ViewInventorySalable>
+@{
+    ViewBag.Title = "Inventory Out Config";
+    var inventoryOuts = (List<InventoryOutConfig>)ViewBag.InventoryOut;
+    bool inventoryOutExist = inventoryOuts != null && inventoryOuts.Count > 0;
+    var inventoryOutExt = new InventoryOutConfigExtension();
+    var categories = (List<Category>)ViewBag.Categories;
+    var quantityTypes = (List<QuantityType>)ViewBag.QuantityTypes;
+    List<InventoryOutConfig> inventoryOutListByCategory;
+    IEnumerable<Category> categoriesSelector;
+}
+<h2>@ViewBag.Title</h2>
+<div data-inset="true" data-role="collapsible-set" data-collapsed="true" class="Inventory-Out-Config-Page">
+    <!-- Message to Display -->
+    <div id="message">
+        <div>
+            <strong>Note:</strong> There is no need to add config on items like Pepsi or Coca Cola.
+        </div>
+        <div>
+            This type of items will be deduct automatically.
+        </div>
+        Don't add recursive deduction config. It will force irrelevent result in your business.
+        When you are done, please make a Shift+F5 for complete refresh.
+    </div>
+
+    @foreach (var salableItems in Model) {
+        categoriesSelector = inventoryOutExt.GetCategoriesExceptCurrent(categories, salableItems.CategoryID);
+        var inventoryId = salableItems.InventoryID;
+        <div data-role="collapsible">
+            <h2 class="display-field">
+                @salableItems.Category : @salableItems.InventoryQuantity
+            </h2>
+
+            <!-- Add Config Button -->
+            <a href="#" title="Add new config." data-role="button" class="AddConfig" data-inventory-id="@inventoryId">Add Config</a>
+            
+            <div class="starting-point inventoryid-@inventoryId">
+                <div class="structure hide">
+                    @using (Html.BeginForm("Save", "InventoryConfig", FormMethod.Post, new { data_inventory_id = @inventoryId,data_config_id=-1 })) {
+                        <hr />
+                        <span class="Hidden-Inputs-Creator">
+                            @Html.Hidden("InventoryId", @inventoryId)
+                            @Html.Hidden("CategoryID", @salableItems.CategoryID)
+                            @Html.Hidden("InventoryOutConfigID", -1)
+                        </span>
+                        <div class="ui-grid-d">
+                            <div class="ui-block-a discardSelection">
+                                <select name="DiscardCategoryID" data-role="none" data-new-role="" data-mini="true"
+                                    class="DiscardCategoryID needsChange" data-inventory-type="leftover">
+                                    @foreach (var discardCategory in categoriesSelector) {
+                                        <option value="@discardCategory.CategoryID">@discardCategory.Category1</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="ui-block-b quantityValue">
+                                <input class="needsChange" data-role="none" data-new-role="" data-mini="true" name="Quantity"
+                                    value="0" type="number" />
+                            </div>
+                            <div class="ui-block-c quantityType">
+                                <select class="needsChange" name="QuantityTypeID" data-role="none" data-new-role=""
+                                    data-mini="true">
+                                    @foreach (var quantitytype in quantityTypes) {
+                                        <option value="@quantitytype.QuantityTypeID">@quantitytype.QtyType</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="ui-block-d buttonPlaces">
+                                <div data-role="controlgroup" data-type="horizontal" data-mini="true" class="buttonCreatingPlace inventoryid-@inventoryId">
+                                    <a href="#" title="Save config." class="clickedButtonOnInventoryOut save needsChange" data-role="none"  data-new-role="button" data-icon="check" data-iconpos="notext" data-theme="j" data-inventory-id="@inventoryId" data-config-id="-1">
+                                    </a><a href="#" title="Remove config." class="clickedButtonOnInventoryOut remove needsChange" data-role="none" data-new-role="button" data-icon="delete" data-iconpos="notext" data-theme="g" data-inventory-id="@inventoryId" data-config-id="-1">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="addObjects-here">
+                
+                </div>
+            </div>
+            @if (inventoryOutExist) {
+                <!-- Inventory out config by salableItems.Category -->
+                inventoryOutListByCategory = inventoryOutExt.GetInvenoryOutByCategory(inventoryOuts, salableItems.CategoryID);
+                foreach (var inventoryOutConfigSingle in inventoryOutListByCategory) {
+                    var configId = inventoryOutConfigSingle.InventoryOutConfigID;
+                    using (Html.BeginForm("Save", "InventoryConfig", FormMethod.Post, new { data_inventory_id = @inventoryId,  data_config_id = configId })) {
+                        <hr />
+                        <span class="Hidden-Inputs-Creator">        
+                            @Html.Hidden("InventoryId", @inventoryId)
+                            @Html.Hidden("CategoryID", inventoryOutConfigSingle.CategoryID)
+                            @Html.Hidden("InventoryOutConfigID", configId)
+                        </span>
+                        <div class="ui-grid-d">
+                            <div class="ui-block-a">
+                                <select name="DiscardCategoryID" data-mini="true" >
+                                    @foreach (var discardCategory in categoriesSelector) {
+                                        <option  value="@discardCategory.CategoryID" @if (discardCategory.CategoryID == inventoryOutConfigSingle.DiscardItemCategory) {<text>selected="selected"</text>}>@discardCategory.Category1</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="ui-block-b">
+                                <input name="Quantity" title="Please click on the check button to save." data-mini="true" value="@inventoryOutConfigSingle.PerSaleQuantity.ToString("########.##")" />
+                            </div>
+                            <div class="ui-block-c">
+                                <select name="QuantityTypeID" data-mini="true">
+                                    @foreach (var quantitytype in quantityTypes) {
+                                        <option value="@quantitytype.QuantityTypeID" @if (inventoryOutConfigSingle.QtyType == quantitytype.QuantityTypeID) { <text>selected="selected"</text> }>@quantitytype.QtyType</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="ui-block-d">
+                                <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                    <a data-inventory-id="@inventoryId" data-config-id="@configId" href="#" title="Save config." class="clickedButtonOnInventoryOut save" data-role="button"  data-icon="check" data-iconpos="notext" data-theme="j" ></a>
+                                    <a data-inventory-id="@inventoryId" data-config-id="@configId" href="#" title="Remove config." class="clickedButtonOnInventoryOut remove" data-role="button" data-icon="delete" data-iconpos="notext" data-theme="g" >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /grid-c -->
+                    }
+                }
+            }
+        </div>
+    }
+</div>
